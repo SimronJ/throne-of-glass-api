@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import {prisma} from "../../../utils/prisma";
 
 
 const handler = async(req: NextApiRequest, res: NextApiResponse) =>{
@@ -10,7 +11,7 @@ const handler = async(req: NextApiRequest, res: NextApiResponse) =>{
 
     if(isNaN(idNum)) return res.status(400).json({err : "Please enter a valid number for character id"});
 
-    const character = await prisma?.tog_character.findUnique({
+    const character = await prisma.tog_character.findUnique({
         where : {
             id : idNum
         }
